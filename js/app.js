@@ -1,38 +1,63 @@
 'use strict';
-// need an array to store the hours - given
+//GOAL:dynamical render a table to the DOM
 
-// object literal for each store
-//min customer each hour - inf provided
-//max customer each hour - inf provided
-//average cookie sold per customer - inf provided
-//for each hour
-//   make an array that holds the customers for each hour
-//   need a random number between the min and the max
-//   *** we need to make an array that holds the number of cookies sold each hour***
-//       -this is what we want to put on the DOM
-//       -total cookies for the day
+//select parent element
+
+var parentElement = document.getElementById('table');
+
+//Put the NAME on the table: 
+//create a tr
+var tableRow = document.createElement('tr');
+
+
+var array=['Name','Type','Color','Age']; 
+for(var i=0; i<array.length; i++);{
+
+  var tableHeader = document.createElement('th');//create elemet
+  tableHeader.textContent = array[i];//give it content
+  tableRow.appendChild(tableHeader);//append it
+
+}
+
+
+//append the tr to the parent
+parentElement.appendChild(tableRow);
+
+
 
 var hours = ['6am', '7am', '8am',' 9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-var seattle = {
-  name: 'seattle',
-  minCustomersEachHour: 23,
-  maxCustomersEachHour: 65,
-  averageCookiesSoldPerCustomer: 6.3,
-  customersEachHour: [],
-  cookiesSoldEachHour: [],
-  totalCookiesForTheDay: 0,
+// var seattle = {
+//   name: 'seattle',
+//   minCustomersEachHour: 23,
+//   maxCustomersEachHour: 65,
+//   averageCookiesSoldPerCustomer: 6.3,
+//   customersEachHour: [],
+//   cookiesSoldEachHour: [],
+//   totalCookiesForTheDay: 0,
 
-  calcCustomersEachHour: function(){
+function Location(name,minCustHour,maxCustHour,avgCookieSales,custEachHour,cookiesSoldEachHour,totalCookies){
+  this.name = name;
+  this.minimum = minCustHour;
+  this.maximum = maxCustHour;
+  this.cookiesPerHour = avgCookieSales;
+  this.customersEachHour= custEachHour;
+  this.cookiesPerHour = cookiesSoldEachHour;
+  this.total = totalCookies;
+
+}
+var seattle = new Location(23,65,6.3,[i],[i],0);
+
+Location.prototype.calcCustomersEachHour = function(){
     // calculate the customers each hour and populate the array
     for(var i=0; i<hours.length; i++){
       var customersThisHours = getRandomNumber(this.minCustomersEachHour, this.maxCustomersEachHour);
 
       this.customersEachHour.push(customersThisHours);
     }
-  },
+  }
   
-  calcCookiesSoldEachHour: function(){
+  Location.prototype.calcCookiesSoldEachHour =function(){
     // multiply the customers by the average cookies each customers buys
     for(var i=0; i<this.customersEachHour.length; i++){
       var wholeCookiesSoldForOneHour = Math.ceil(this.customersEachHour[i] * this.averageCookiesSoldPerCustomer);
@@ -41,9 +66,9 @@ var seattle = {
 
       this.totalCookiesForTheDay += wholeCookiesSoldForOneHour; 
     }
-  },
+  }
  
-  render: function(){
+  Location.prototype.render=function(){
     seattle.calcCustomersEachHour();
     seattle.calcCookiesSoldEachHour();
     var seattleElement = document.getElementById('seattle');
@@ -70,10 +95,14 @@ var seattle = {
     listItem.textContent = this.totalCookiesForTheDay;
     seattleElement.appendChild(listItem);
   }
-}
+//}
 
 // this function is from MDN Math.random to help with mathematical operation we need to make to find the missing numbers
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
-seattle.render();
+//seattle.render();
+//seattle.customersEachHour();
+
+
+
