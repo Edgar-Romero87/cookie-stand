@@ -1,0 +1,22 @@
+body {
+  background-color: blanchedalmond;
+}
+
+#bigfish {
+  width: 200px;
+  margin-left: 200px;
+}
+
+.family {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.shirt {
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
