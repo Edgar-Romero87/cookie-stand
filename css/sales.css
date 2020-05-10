@@ -20,3 +20,14 @@ body {
   margin-left: auto;
   display: block;
 }
+nav li{
+  background-color: rgba(253, 146, 146, 0.678);
+  border-radius: 3px;
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px 10px;
+  color: rgb(255, 255, 255);
+  font-size: 1.25em;
+  text-shadow: 1px 1px 1px rgb(255, 255, 255);
+  box-shadow: 2px 2px 4px  rgba(0, 0, 0, 0.096);
+  margin-left: 4px;
